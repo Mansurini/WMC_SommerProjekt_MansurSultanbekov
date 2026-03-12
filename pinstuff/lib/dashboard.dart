@@ -19,7 +19,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<PinInfo> pinnedPins = [];
+  List<PinInfo> pinnedPins = []; //mach klasse noch!!!!! vergisss es nicht zukunfst ich
 
   void pressedSettingsButton() {}
 
