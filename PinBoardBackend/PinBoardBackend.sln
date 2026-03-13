@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.5.11605.296
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PinBoardBackend", "PinBoardBackend.csproj", "{0D542061-CC58-C7DE-7FEE-6F9532C3AA3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbPinLibrary", "..\DbPinLibrary\DbPinLibrary.csproj", "{1880BE73-C596-4A3B-AC2D-A6AD473E2290}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D542061-CC58-C7DE-7FEE-6F9532C3AA3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D542061-CC58-C7DE-7FEE-6F9532C3AA3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D542061-CC58-C7DE-7FEE-6F9532C3AA3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D542061-CC58-C7DE-7FEE-6F9532C3AA3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1880BE73-C596-4A3B-AC2D-A6AD473E2290}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1880BE73-C596-4A3B-AC2D-A6AD473E2290}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1880BE73-C596-4A3B-AC2D-A6AD473E2290}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1880BE73-C596-4A3B-AC2D-A6AD473E2290}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2C9477C-2848-4A9C-B685-1DC16570D9CB}
+	EndGlobalSection
+EndGlobal

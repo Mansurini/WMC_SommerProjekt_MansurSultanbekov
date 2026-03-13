@@ -1,13 +1,15 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:window_manager/window_manager.dart';
 import 'pininfo.dart';
 import 'pinwidget.dart';
 import 'dialogwidget.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:path/path.dart' as p;
+import 'pinapi.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatefulWidget{
   const MyHomePage({super.key, required this.title});
 
   // This widget is the home page of your application. It is stateful, meaning
@@ -25,8 +27,49 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with WindowListener{
   List<PinInfo> pinnedPins = []; //mach klasse noch!!!!! vergisss es nicht zukunfst ich
+
+ @override
+  void initState() {
+    super.initState();
+    windowManager.addListener(this); // Listener registrieren
+    loadPins(); 
+  }
+
+  @override
+  void dispose() {
+    windowManager.removeListener(this);
+    super.dispose();
+  }
+
+  // Dieses Event wird ausgelöst, bevor das Fenster geschlossen wird
+  @override
+  void onWindowClose() async {
+    await _updateAllPins(); // Alle Pins updaten
+    await windowManager.destroy(); // Fenster schließen
+  }
+
+Future<void> _updateAllPins() async {
+  for (final pin in pinnedPins) {
+    try {
+      await PinApi.updatePin(pin);
+    } catch (e) {
+      print('Fehler beim Updaten von Pin ${pin.id}: $e');
+    }
+  }
+}
+  void loadPins() async {
+    try {
+      final pins = await PinApi.getPins();
+      setState(() {
+        pinnedPins = pins;
+      });
+    } catch (e) {
+      print('Error loading pins: $e');
+    }
+  }
+
 
   void pressedSettingsButton() {
     throw UnimplementedError();
@@ -112,6 +155,16 @@ void dropLink(details) async {
             pinnedPins.add(pin);
           });
         },
+        onDelete: () async {
+  try {
+    await PinApi.deletePin(pin.id);  // Pin auf Server löschen
+    setState(() {
+      pinnedPins.remove(pin);        // Pin lokal entfernen
+    });
+  } catch (e) {
+    print('Fehler beim Löschen: $e');
+  }
+}
       );
     }).toList(),
   ),

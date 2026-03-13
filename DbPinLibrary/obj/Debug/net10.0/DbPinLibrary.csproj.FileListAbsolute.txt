@@ -1,0 +1,15 @@
+C:\Schule\WMC\WMC_SommerProjekt_MansurSultanbekov\DbPinLibrary\bin\Debug\net10.0\DbPinLibrary.deps.json
+C:\Schule\WMC\WMC_SommerProjekt_MansurSultanbekov\DbPinLibrary\bin\Debug\net10.0\DbPinLibrary.runtimeconfig.json
+C:\Schule\WMC\WMC_SommerProjekt_MansurSultanbekov\DbPinLibrary\bin\Debug\net10.0\DbPinLibrary.dll
+C:\Schule\WMC\WMC_SommerProjekt_MansurSultanbekov\DbPinLibrary\bin\Debug\net10.0\DbPinLibrary.pdb
+C:\Schule\WMC\WMC_SommerProjekt_MansurSultanbekov\DbPinLibrary\obj\Debug\net10.0\DbPinLibrary.csproj.AssemblyReference.cache
+C:\Schule\WMC\WMC_SommerProjekt_MansurSultanbekov\DbPinLibrary\obj\Debug\net10.0\DbPinLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Schule\WMC\WMC_SommerProjekt_MansurSultanbekov\DbPinLibrary\obj\Debug\net10.0\DbPinLibrary.AssemblyInfoInputs.cache
+C:\Schule\WMC\WMC_SommerProjekt_MansurSultanbekov\DbPinLibrary\obj\Debug\net10.0\DbPinLibrary.AssemblyInfo.cs
+C:\Schule\WMC\WMC_SommerProjekt_MansurSultanbekov\DbPinLibrary\obj\Debug\net10.0\DbPinLibrary.csproj.CoreCompileInputs.cache
+C:\Schule\WMC\WMC_SommerProjekt_MansurSultanbekov\DbPinLibrary\obj\Debug\net10.0\DbPinLibrary.sourcelink.json
+C:\Schule\WMC\WMC_SommerProjekt_MansurSultanbekov\DbPinLibrary\obj\Debug\net10.0\DbPinLibrary.dll
+C:\Schule\WMC\WMC_SommerProjekt_MansurSultanbekov\DbPinLibrary\obj\Debug\net10.0\refint\DbPinLibrary.dll
+C:\Schule\WMC\WMC_SommerProjekt_MansurSultanbekov\DbPinLibrary\obj\Debug\net10.0\DbPinLibrary.pdb
+C:\Schule\WMC\WMC_SommerProjekt_MansurSultanbekov\DbPinLibrary\obj\Debug\net10.0\DbPinLibrary.genruntimeconfig.cache
+C:\Schule\WMC\WMC_SommerProjekt_MansurSultanbekov\DbPinLibrary\obj\Debug\net10.0\ref\DbPinLibrary.dll

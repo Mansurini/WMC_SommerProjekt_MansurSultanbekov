@@ -1,9 +1,9 @@
 // ignore: file_names
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'pininfo.dart';
 import 'opengraphfetch.dart';
+import 'pinapi.dart';
 
 class AddPinDialog extends StatefulWidget {
   final String? initialUrl;
@@ -24,6 +24,7 @@ class _AddPinDialogState extends State<AddPinDialog> {
     super.initState();
     urlController = TextEditingController(text: widget.initialUrl ?? "");
   }
+  
 
   Future<void> fetchPreview() async {
   setState(() => loading = true);
@@ -80,21 +81,25 @@ previewImageUrl = imageUrl ?? "https://dummyimage.com/300x200";
           child: Text("Abbrechen"),
         ),
         ElevatedButton(
-          onPressed: previewImageUrl == null
-              ? null
-              : () {
-                  Navigator.pop(
-                    context,
-                    PinInfo(
-                      link: urlController.text,
-                      imageUrl: previewImageUrl!,
-                      x: 200,
-                      y: 300,
-                    ),
-                  );
-                },
-          child: Text("Pin erstellen"),
-        ),
+  onPressed: previewImageUrl == null
+      ? null
+      : () async {
+          // Pin lokal erzeugen
+          final newPin = PinInfo(
+            imageUrl: previewImageUrl!,
+            x: 200,
+            y: 300,
+          );
+          // Pin automatisch ans Backend senden
+          final dbSavedPin = await PinApi.addPin(newPin);
+
+          // Dialog schließen und Pin an die Pinnwand zurückgeben
+          Navigator.pop(context, dbSavedPin);
+
+          
+        },
+  child: Text("Pin erstellen"),
+),
       ],
     );
   }

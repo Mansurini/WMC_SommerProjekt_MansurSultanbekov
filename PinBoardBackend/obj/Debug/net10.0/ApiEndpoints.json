@@ -1,0 +1,64 @@
+[
+  {
+    "ContainingType": "PinBoardBackend.Controllers.PinsController",
+    "Method": "GetPins",
+    "RelativePath": "api/Pins",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PinBoardBackend.Models.Pin, DbPinLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PinBoardBackend.Controllers.PinsController",
+    "Method": "AddPin",
+    "RelativePath": "api/Pins",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pin",
+        "Type": "PinBoardBackend.Models.Pin",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PinBoardBackend.Models.Pin",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PinBoardBackend.Controllers.PinsController",
+    "Method": "DeletePin",
+    "RelativePath": "api/Pins/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
