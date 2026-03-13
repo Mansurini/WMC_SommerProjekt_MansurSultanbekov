@@ -1,4 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'pininfo.dart';
+import 'pinwidget.dart';
+import 'dialogwidget.dart';
+import 'package:desktop_drop/desktop_drop.dart';
+import 'package:path/path.dart' as p;
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -21,58 +28,63 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   List<PinInfo> pinnedPins = []; //mach klasse noch!!!!! vergisss es nicht zukunfst ich
 
-  void pressedSettingsButton() {}
-
-  void pressedAddPinButton() {
-    pinItem(
-      Container(height: 100, width: 100, color: Colors.orange),
-      200.0,
-      300.0,
-    );
+  void pressedSettingsButton() {
+    throw UnimplementedError();
   }
 
-  void pinItem(Widget widget, double x, double y) {
+void pressedAddPinButton() async {
+  final result = await showDialog<PinInfo>(
+    context: context,
+    builder: (context) => AddPinDialog(),
+  );
+
+  if (result != null) {
     setState(() {
-      pinnedWidgets.add(
-        Positioned(
-          left: x,
-          top: y,
-          child: pinnedWidgets.map((item) {
-    return Positioned(
-      left: item.x,
-      top: item.y,
-      child: GestureDetector(
-        onPanUpdate: (details) {
-          setState(() {
-            item.x += details.delta.dx;
-            item.y += details.delta.dy;
-          });
-        },
-        child: item.widget,
-      ),
-    );
-  }).toList(),
-        ),
-      );
+      pinnedPins.add(result);
     });
   }
+}
+
+
+// Hilfsfunktion zum Kopieren der Datei
+String copyToAppFolder(String path) {
+  final appDir = Directory('${Directory.current.path}/pinned_images');
+  if (!appDir.existsSync()) appDir.createSync(recursive: true);
+
+  final fileName = p.basename(path);
+  final newPath = '${appDir.path}/$fileName';
+  File(path).copySync(newPath);
+  return newPath;
+}
+
+// Drop-Funktion
+void dropLink(details) async {
+  for (final file in details.files) {
+    final path = file.path;
+
+    if (path.endsWith('.png') || path.endsWith('.jpg') || path.endsWith('.jpeg') || path.endsWith('.gif')) {
+      // Kopieren in permanenten Ordner
+      final permanentPath = copyToAppFolder(path);
+
+      final result = await showDialog<PinInfo>(
+        context: context,
+        builder: (context) => AddPinDialog(initialUrl: permanentPath),
+      );
+
+      if (result != null) {
+        setState(() {
+          pinnedPins.add(result);
+        });
+      }
+    }
+  }
+}
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
         backgroundColor: .fromRGBO(0, 0, 0, 0),
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         actions: [
           IconButton(
             onPressed: pressedAddPinButton,
@@ -88,7 +100,22 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      body: Stack(children: pinnedWidgets),
+      body: DropTarget(
+  onDragDone: dropLink,
+  child: Stack(
+    children: pinnedPins.map((pin) {
+      return PinWidget(
+        pin: pin,
+        onBringToFront: () {
+          setState(() {
+            pinnedPins.remove(pin);
+            pinnedPins.add(pin);
+          });
+        },
+      );
+    }).toList(),
+  ),
+),
     );
   }
 }
